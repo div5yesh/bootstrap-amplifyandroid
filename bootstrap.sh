@@ -39,6 +39,8 @@ dependencies {
     // Amplify core dependency
     implementation 'com.amplifyframework:core:1.18.0'
     implementation 'com.amplifyframework:aws-auth-cognito:1.18.0'
+    implementation 'com.amplifyframework:aws-api:1.18.0'
+    implementation 'com.amplifyframework:aws-storage-s3:1.18.0'
 
     // Support for Java 8 features
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
@@ -87,6 +89,8 @@ import android.util.Log;
 
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
+import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
+import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.core.Amplify;
 
 public class AmplifyApp extends Application {
@@ -94,7 +98,9 @@ public class AmplifyApp extends Application {
         super.onCreate();
 
         try {
-            Amplify.addPlugin(new AWSCognitoAuthPlugin());
+            // Amplify.addPlugin(new AWSS3StoragePlugin());
+            // Amplify.addPlugin(new AWSCognitoAuthPlugin());
+            // Amplify.addPlugin(new AWSApiPlugin());
             Amplify.configure(getApplicationContext());
             Log.i(\"MyAmplifyApp\", \"Initialized Amplify\");
         } catch (AmplifyException error) {
@@ -111,6 +117,9 @@ echo "$main_activity" > ./app/src/main/java/"${package_name//.//}"/MainActivity.
 echo "$application" > ./app/src/main/java/"${package_name//.//}"/AmplifyApp.java
 
 rm -rf ./app/src/test
+rm -rf ./app/src/main/resources
 rm ./app/src/main/java/"${package_name//.//}"/App.java
 
 ./gradlew build
+
+amplify init
