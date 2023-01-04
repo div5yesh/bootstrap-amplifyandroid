@@ -13,4 +13,4 @@ jobs:
         env:
           GH_ACTION: ${{ github.event.action }}
         shell: bash
-        run: echo "$GH_ACTION"
+        run: echo '$GH_ACTION'
