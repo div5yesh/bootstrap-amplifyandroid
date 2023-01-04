@@ -11,4 +11,4 @@ jobs:
     steps:
       - name: Run echo command
         shell: bash
-        run: echo ${{github.event.action}}
+        run: echo '${{github.event.action}}'
