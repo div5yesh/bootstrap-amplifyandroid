@@ -11,6 +11,6 @@ jobs:
     steps:
       - name: Run echo command
         env:
-          GH_ACTION: ${{github.event.action}}
+          GH_ACTION: ${{ github.event.action }}
         shell: bash
-        run: echo $GH_ACTION
+        run: echo "$GH_ACTION"
