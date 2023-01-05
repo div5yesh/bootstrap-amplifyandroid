@@ -6,9 +6,17 @@ on:
     types: [closed]
 
 jobs:
-  log:
+  log1:
     runs-on: ubuntu-latest
+    if: ${{ github.event_name = 'workflow_dispatch' }}
     steps:
       - name: Run echo command
         shell: bash
-        run: echo '${{ toJSON(github.event_name) }} - ${{ toJSON(github.event) }}'
+        run: echo '${{ toJSON(github.event_name) }}'
+  log2:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name = 'pull_request' && (github.event.pull_request.merged == true && github.event.ref == 'refs/heads/main' && startsWith(toJSON(github.event.pull_request.title), 'release: Amplify Android 2.') }}
+    steps:
+      - name: Run echo command
+        shell: bash
+        run: echo '${{ toJSON(github.event) }}'
